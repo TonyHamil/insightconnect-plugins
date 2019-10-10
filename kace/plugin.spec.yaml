@@ -1,0 +1,176 @@
+plugin_spec_version: v2
+name: kace
+title: KACE
+description: Work with KACE SMA
+version: 1.0.6
+vendor: quest
+status: ["unsupported"]
+tags:
+- kace
+- patching
+- itsm
+- inventory
+icon: "icon.png"
+types:
+  system_inventory:
+    Id:
+      description: System ID
+      title: ID
+      type: string
+    Modified:
+      description: System Modified Date
+      title: System Modified Date
+      type: date
+    Created:
+      description: System Created Date
+      title: System Created Date
+      type: date
+    User:
+      description: Logged in User
+      title: User
+      type: string
+    Name:
+      description: System Hostname
+      title: System Hostname
+      type: string
+    Ip:
+      description: System IP
+      title: System IP
+      type: string
+    Os_name:
+      description: OS Name
+      title: OS Name
+      type: string
+    Os_number:
+      description: OS Version Number
+      title: OS Version Number
+      type: string
+    Last_inventory:
+      description: Last Inventory Date
+      title: Last Inventory Date
+      type: date
+    Last_sync:
+      description: Last System Sync
+      title: Last System Sync
+      type: date
+    Ram_Total:
+      description: Total Memory Installed
+      title: Total Memory
+      type: string
+    Ram_used:
+      description: Total Memory Used
+      title: Total Memory
+      type: string
+    Ram_max:
+      description: Max Memory for the System
+      title: Max Memory
+      type: string
+    Bios_identification_code:
+      description: BIOS Identification Code
+      title: BIOS Identification Code
+      type: string
+    Sound_devices:
+      description: Sound Devices
+      title: Sound Devices
+      type: string
+    Cdrom_devices:
+      description: CDrom Devices
+      title: CDrom Devices
+      type: string
+    Video_controllers:
+      description: Video Controllers
+      title: Video Controllers
+      type: string
+    Monitor:
+      description: System Monitor
+      title: System Monitor
+      type: string
+    Registry_size:
+      description: Size of the Registry on the System
+      title: Size of the Registry
+      type: string
+    Registry_max_size:
+      description: Maximum Registry Size of the System
+      title: Maximum Registry Size
+      type: string
+    Pagefile_size:
+      description: Pagefile of the System
+      title: Pagefile of the System
+      type: string
+    Pagefile_max_size:
+      description: Maximum Possible Pagefile of the System
+      title: Maximum Pagefile
+      type: string
+    Manual_entry:
+      description: Manual Entry
+      title: Manual Entry
+      type: string
+
+connection:
+  url:
+    title: URL
+    description: Hostname of the KACE Appliance
+    type: string
+    required: true
+    default: vulcan.hillwood.com
+  organization:
+    title: Organization
+    description: KACE organization environment
+    type: string
+    required: true
+    default: Default
+  username_and_password:
+    title: Username and Password
+    description: KACE username and password
+    type: credential_username_password
+    required: true
+  ssl_verify:
+    title: SSL Verify
+    description: Whether to access the server over HTTPS
+    type: boolean
+    default: true
+    required: true
+actions:
+  lookup_device:
+    title: Lookup Inventory Device
+    description: Looks up a Device in the Inventory Category
+    input:
+      device_name:
+        title: Device Name
+        type: string
+        description: Retrieves the Devices Inventory information
+        required: true
+    output:
+      success:
+        title: Success
+        description: Boolean indicating whether the business object was successfully
+          created
+        type: boolean
+        required: true
+      result:
+        title: Requested System Information
+        description: The Requested information for the System that was Inputted
+        type: '[]system_inventory'
+        required: true
+
+  system_refresh:
+    title: Refresh System Information
+    description: Refreshes the System Information so that it is up to date
+    input:
+      device_name:
+        title: Device Name
+        type: string
+        description: The System to perform the System Refresh on
+        required: true
+    output:
+      success:
+        title: Success
+        description: Boolean indicating whether the business object was successfully
+          created
+        type: boolean
+        required: true
+      result:
+        title: Result
+        description: If the Inventory Refresh was successful or not
+        type: string
+        required: true

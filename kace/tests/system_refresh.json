@@ -1,0 +1,20 @@
+{
+  "body": {
+    "action": "system_refresh",
+    "meta": {},
+    "input": {
+      "device_name": ""
+    },
+    "connection": {
+      "organization": "Default",
+      "ssl_verify": true,
+      "url": "vulcan.hillwood.com",
+      "username_and_password": {
+        "password": "",
+        "username": ""
+      }
+    }
+  },
+  "type": "action_start",
+  "version": "v1"
+}
